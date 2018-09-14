@@ -3,7 +3,7 @@
     "description": "Gerenciador de Rotas HTTP Worksena",
     "license": "MIT",
     "type": "library",
-    "version": "v1.0.1",
+    "version": "v1.0.2",
     "authors": [
         {
           "name": "Walderlan Sena",
