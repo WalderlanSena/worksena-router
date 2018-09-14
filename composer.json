@@ -1,9 +1,9 @@
 {
     "name": "mvs/worksena-router",
-    "description": "Gerenciador de Rotas HTTP",
+    "description": "Gerenciador de Rotas HTTP Worksena",
     "license": "MIT",
-    "type": "project",
-    "version": "v1.0.0",
+    "type": "library",
+    "version": "v1.0.1",
     "authors": [
         {
           "name": "Walderlan Sena",

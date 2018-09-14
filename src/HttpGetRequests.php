@@ -1,9 +1,11 @@
 <?php
 /**
- * Created by PhpStorm.
- * User: Walderlan Sena <senawalderlan@gmail.com>
- * Date: 16/06/18
- * Time: 22:47
+ * --- WorkSena - Micro Framework ---
+ * Sistema de router HTTP WorkSena MicroFramework
+ * @license https://github.com/WalderlanSena/worksena/blob/master/LICENSE (MIT License)
+ *
+ * @copyright © 2013-2018 - @author Walderlan Sena <walderlan@worksena.xyz>
+ *
  */
 
 namespace MVS\Router;

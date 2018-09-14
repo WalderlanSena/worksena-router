@@ -17,7 +17,7 @@ class Router extends Bootstrap
      */
     protected function initRoutes()
     {
-        $route = include __DIR__ . '/../router.php';
+        $route = include __DIR__ . '/../../../../router.php';
 
         $this->setRoutes(array_filter($route['routes']));
     }
