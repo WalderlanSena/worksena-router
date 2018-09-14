@@ -1,0 +1,24 @@
+{
+    "name": "mvs/worksena-router",
+    "description": "Gerenciador de Rotas HTTP",
+    "license": "MIT",
+    "type": "project",
+    "version": "v1.0.0",
+    "authors": [
+        {
+          "name": "Walderlan Sena",
+          "email": "walderlan@worksena.xyz",
+          "homepage": "https://www.worksena.xyz",
+          "role": "Developer"
+        }
+    ],
+    "autoload": {
+        "psr-4": {
+            "MVS\\Router\\": "src/"
+        }
+    },
+    "require": {
+        "php": ">=7.0",
+        "mvs/worksena-di": "*"
+    }
+}
