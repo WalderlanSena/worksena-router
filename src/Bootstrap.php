@@ -77,8 +77,20 @@ abstract class Bootstrap
     {
         $resolver = new Resolver();
 
+        $dirPathRouter = __DIR__ . '/../../../../config/services/';
+
+        $iterator = new \FilesystemIterator($dirPathRouter);
+
+        $services = [];
+
+        foreach ($iterator as $fileinfo) {
+            if ($iterator->getType() == 'file' && $iterator->getExtension() == 'php') {
+                $services = include $dirPathRouter.$iterator->getFilename();
+            }
+        }
+
         try {
-            $controllerResolve = $resolver->resolve($controller);
+            $controllerResolve = $resolver->resolve($controller, $services);
         } catch (\ReflectionException $reflectionException) {
             die($reflectionException->getMessage());
         }
