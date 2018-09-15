@@ -17,8 +17,27 @@ class Router extends Bootstrap
      */
     protected function initRoutes()
     {
-        $route = include __DIR__ . '/../../../../config/routes.php';
+        $router = [];
 
-        $this->setRoutes(array_filter($route['routes']));
+        $dirPathRouter = __DIR__ . '/../../../../config/routes/';
+
+        $iterator = new \FilesystemIterator($dirPathRouter);
+
+        foreach ($iterator as $fileinfo) {
+            if ($iterator->getType() == 'file' && $iterator->getExtension() == 'php') {
+                $routes = include $dirPathRouter.$iterator->getFilename();
+                array_push($router, $routes);
+            }
+        }
+
+        $router_final['routes'] = [];
+
+        foreach ($router as $value) {
+            foreach ($value as $oneRoute) {
+                $router_final['routes'][] = $oneRoute;
+            }
+        }
+
+        $this->setRoutes($router_final['routes']);
     }
 }
