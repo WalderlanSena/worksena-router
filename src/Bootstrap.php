@@ -10,6 +10,7 @@
 
 namespace MVS\Router;
 
+use MVS\Router\Service\Http\RequestService;
 use WS\DI\Resolver;
 
 abstract class Bootstrap
@@ -19,6 +20,7 @@ abstract class Bootstrap
     private $controller;
     private $action;
     private $routeFound;
+    private $requestMethod;
 
     public function __construct()
     {
@@ -34,7 +36,7 @@ abstract class Bootstrap
 
     /**
      * @param $url
-     * @throws \ReflectionException
+     * @return bool|mixed
      */
     private function run($url)
     {
@@ -44,14 +46,14 @@ abstract class Bootstrap
 
         foreach ($this->routes as $route) {
 
-            $requestMethod      = $_SERVER['REQUEST_METHOD'];
+            $this->requestMethod      = $_SERVER['REQUEST_METHOD'];
             $requestMethodRoute = $route['method'];
             $routeBase          = explode('/', $route['route']);
             $countRouteBase     = count($routeBase);
 
             for ($i = 0; $i < $countRouteBase; $i++) {
                 if ((strpos($routeBase[$i], '{') !== false) && ($countRouteBase == $countRouteRequest) &&
-                    ($requestMethod == $requestMethodRoute)) {
+                    ($this->requestMethod == $requestMethodRoute)) {
                     $invalidCaracteres = ['{','}'];
                     $this->params[str_replace($invalidCaracteres, '',$routeBase[$i])] = $request[$i];
                     $routeBase[$i]  = $request[$i];
@@ -69,8 +71,10 @@ abstract class Bootstrap
             }
         }
         if ($this->routeFound) {
-           $this->callMvc($this->controller, $this->action);
+           return $this->callMvc($this->controller, $this->action);
         }
+
+        return $this->pageNotFound();
     }
 
     public function callMvc(string $controller, string $action)
@@ -96,7 +100,9 @@ abstract class Bootstrap
         }
 
         if (method_exists($controllerResolve, $action)) {
-            return $controllerResolve->$action(HttpGetRequests::getRequests($this->params));
+            $serverRequest = new RequestService();
+            $serverRequest->setParams($this->params);
+            return $controllerResolve->$action($serverRequest);
         }
 
         return false;
@@ -117,5 +123,10 @@ abstract class Bootstrap
     protected function getUrl()
     {
         return parse_url($_SERVER['REQUEST_URI'], PHP_URL_PATH);
+    }
+    
+    protected function pageNotFound()
+    {
+        return include_once __DIR__ . '/../../../../templates/errors/404.phtml';
     }
 }

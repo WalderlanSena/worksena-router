@@ -1,0 +1,55 @@
+{
+    "_readme": [
+        "This file locks the dependencies of your project to a known state",
+        "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
+        "This file is @generated automatically"
+    ],
+    "content-hash": "d47225845098b9e4d0606907bc6ceb17",
+    "packages": [
+        {
+            "name": "mvs/worksena-di",
+            "version": "v1.0.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/WalderlanSena/worksena-di.git",
+                "reference": "787fc090fbf40156756f844c074703be918f0c00"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/WalderlanSena/worksena-di/zipball/787fc090fbf40156756f844c074703be918f0c00",
+                "reference": "787fc090fbf40156756f844c074703be918f0c00",
+                "shasum": ""
+            },
+            "type": "project",
+            "autoload": {
+                "psr-4": {
+                    "WS\\DI\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Walderlan Sena",
+                    "email": "walderlan@worksena.xyz",
+                    "homepage": "https://www.worksena.xyz",
+                    "role": "Developer"
+                }
+            ],
+            "description": "Gerenciador de Dependência WorkSena",
+            "time": "2018-09-14T02:23:34+00:00"
+        }
+    ],
+    "packages-dev": [],
+    "aliases": [],
+    "minimum-stability": "stable",
+    "stability-flags": [],
+    "prefer-stable": false,
+    "prefer-lowest": false,
+    "platform": {
+        "php": ">=7.0"
+    },
+    "platform-dev": []
+}
